@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Route} from "react-router-dom";
 import HomeComponent from "./HomeComponent";
 import DetailsComponent from "./DetailsComponent";
-import ApiClient from "../prototype/ApiClient";
+import ApiClientComponent from "./ApiClientComponent";
 
 
 export default class HomePage extends React.Component {
@@ -19,7 +19,7 @@ export default class HomePage extends React.Component {
                     <Route
                         path='/search'
                         exact={true}
-                        component={ApiClient}/>
+                        component={ApiClientComponent}/>
 
                         <Route
                             path='/details'
