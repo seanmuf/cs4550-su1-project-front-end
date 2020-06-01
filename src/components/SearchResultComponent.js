@@ -1,53 +1,30 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import SearchCardComponent from "./SearchCardComponent";
 
 export default class SearchResultComponent extends React.Component {
-
-    state = {
-        keyword: '',
-        products: []
-    }
-
-    updateKeyWord = (newWord) =>
-        this.setState(prevState => ({
-            keyword: newWord
-        }))
-
-    search = () =>
-        fetch('')
-            .then(response => response.json())
-            .then(this.renderProducts)
-
-    renderProducts = (response) =>
-        this.setState({
-            products: response.search
-        })
-
-
     render() {
         return (
-            <div>
-                <h1>Search Page</h1>
-                <div className="input-group">
-                    <input className="form-control"
-                           placeholder="keyword"
-                    onChange={(event) => this.updateKeyWord(event.target.value)}
-                           value={this.state.keyword}/>
-                    <div className="input-group-append">
-                        <button
-                            onClick={this.search}
-                            className="btn btn-success">
-                            Search
-                        </button>
-                    </div>
-                </div>
-                <ul className="list-group">
+            <div className="container">
+                <table className="table searchResultTable">
+                    <thead className="searchResultHeader">
+                    <tr>
+                        <td>Search Results</td>
+                    </tr>
+                    </thead>
+                </table>
+                <div className="row">
                     {
-                        this.state.products.map(products =>
-                            <li className="list-group-item">products.title</li>)
+                        this.props.products.map(product =>
+                            <div key={product._id}
+                                 className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                                <SearchCardComponent
+                                    product={product}/>
+                            </div>
+                        )
                     }
-                </ul>
+                </div>
             </div>
+
         )
     }
 }
