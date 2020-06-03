@@ -10,9 +10,13 @@ export default class SearchCardComponent extends React.Component {
     render() {
         return(
             <div className="card">
+                <img className="card-img-top" src={this.state.product.imageUrl}/>
                 <div className="card-body">
-                    <Link to="/details">
-                    <button className="btn btn-primary btn-sm">
+                    <div>{this.state.product.title}</div>
+                    <div>{this.state.product.price}</div>
+                    <Link to={`/details/${this.state.product.ASIN}`}>
+                    <button
+                        className="btn btn-primary btn-sm">
                         More Details
                     </button>
                     </Link>
