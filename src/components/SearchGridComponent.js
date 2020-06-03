@@ -1,7 +1,7 @@
 import React from "react";
 import SearchCardComponent from "./SearchCardComponent";
 
-export default class SearchResultComponent extends React.Component {
+export default class SearchGridComponent extends React.Component {
     render() {
         return (
             <div className="container">
@@ -15,7 +15,7 @@ export default class SearchResultComponent extends React.Component {
                 <div className="row">
                     {
                         this.props.products.map(product =>
-                            <div key={product._id}
+                            <div key={product.ASIN}
                                  className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                                 <SearchCardComponent
                                     product={product}/>
