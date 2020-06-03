@@ -6,7 +6,7 @@ import SearchServices from "../services/SearchServices";
 export default class SearchContainer extends React.Component {
 
     state = {
-        keyword: '',
+        keyword: 'cat',
         products: [{_id: 123, title: 'soap', price: 4},{_id: 3, title: 'soap', price: 4},{_id: 4, title: 'soap', price: 4},{_id: 5, title: 'soap', price: 4},{_id: 6, title: 'soap', price: 4}]
     }
 
@@ -62,7 +62,8 @@ export default class SearchContainer extends React.Component {
 
                 <div>
                     <SearchResultComponent
-                        products={this.state.products}/>
+                        products={this.state.products}
+                        keyword={this.state.keyword}/>
                 </div>
 
             </div>

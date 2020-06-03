@@ -8,7 +8,7 @@ export default class SearchResultComponent extends React.Component {
                 <table className="table searchResultTable">
                     <thead className="searchResultHeader">
                     <tr>
-                        <td>Search Results</td>
+                        <td>Search Results For "{this.props.keyword}"</td>
                     </tr>
                     </thead>
                 </table>
@@ -20,8 +20,7 @@ export default class SearchResultComponent extends React.Component {
                                 <SearchCardComponent
                                     product={product}/>
                             </div>
-                        )
-                    }
+                        )}
                 </div>
             </div>
 
