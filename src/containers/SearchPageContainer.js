@@ -1,13 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import SearchResultComponent from "../components/SearchResultComponent";
+import SearchGridComponent from "../components/SearchGridComponent";
 import SearchServices from "../services/SearchServices";
 
-export default class SearchContainer extends React.Component {
+export default class SearchPageContainer extends React.Component {
 
     state = {
-        keyword: 'cat',
-        products: [{_id: 123, title: 'soap', price: 4},{_id: 3, title: 'soap', price: 4},{_id: 4, title: 'soap', price: 4},{_id: 5, title: 'soap', price: 4},{_id: 6, title: 'soap', price: 4}]
+        keyword: '',
+        products: []
     }
 
     updateKeyWord = (newWord) =>
@@ -15,13 +15,13 @@ export default class SearchContainer extends React.Component {
             keyword: newWord
         }))
 
-    searchProducts = (keyword) =>
+    searchProducts = (keyword) => {
         SearchServices.findProductsByKeyWord(keyword)
             .then(actualProducts =>
-            this.setState(actualProducts => ({
-                products: actualProducts
-            })))
-
+                this.setState({
+                    products: actualProducts
+                }));
+    }
 
     render() {
         return (
@@ -47,11 +47,11 @@ export default class SearchContainer extends React.Component {
                                                onChange={(event) => this.updateKeyWord(event.target.value)}
                                                value={this.state.keyword}/>
                                         <div className="input-group-append">
-                                            <button
-                                                onClick={this.searchProducts}
-                                                className="btn btn-success">
-                                                Search
-                                            </button>
+                                                <button
+                                                    onClick={() => this.searchProducts(this.state.keyword)}
+                                                    className="btn btn-success">
+                                                    Search
+                                                </button>
                                         </div>
                                     </div>
                                 </li>
@@ -61,10 +61,12 @@ export default class SearchContainer extends React.Component {
                 </div>
 
                 <div>
-                    <SearchResultComponent
+                    <SearchGridComponent
                         products={this.state.products}
-                        keyword={this.state.keyword}/>
+                        keyword={this.state.keyword}
+                        />
                 </div>
+
 
             </div>
         )
