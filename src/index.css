@@ -11,3 +11,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-img-top {
+  width: 100%!important;
+  height: 80px!important;
+}
+
+.card-body {
+  font-size: 12px;
+}
+
+.card {
+  margin-top: 15px;
+}
+
+.detailsPageSearchLink {
+  font-size: 12px;
+}
+
+.detailsRow {
+  background-color: darkgray;
+}
+
+.detailsTable {
+  margin-top: 80px;
+}
+
+.detailsTableHeader {
+  background-color: lightslategray;
+  font-weight: bold;
+}
+
+.searchResultTable {
+  margin-top: 80px;
+}
+
+.searchResultHeader {
+  background-color: lightslategray;
+  font-weight: bold;
+}
+
+.detailsPageHeader {
+  margin-left: 30px;
+}
+
+.searchPageHeader {
+  margin-left: 30px;
+}
+
+.homePageNav {
+  margin-top: 68px;
+}
+
+.searchPageHomeLink {
+  font-size: 12px;
+}
+
+.loginDivider {
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 8px;
+}
+
+nav .navbar-nav li a{
+  color: white !important;
+}
+
+
+
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
