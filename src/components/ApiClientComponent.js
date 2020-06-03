@@ -1,12 +1,12 @@
 import React from "react";
-import SearchContainer from "../containers/SearchContainer";
+import SearchPageContainer from "../containers/SearchPageContainer";
 
 export default class ApiClientComponent extends React.Component {
 
     render() {
         return (
             <div>
-                <SearchContainer/>
+                <SearchPageContainer/>
             </div>
         )
     }
