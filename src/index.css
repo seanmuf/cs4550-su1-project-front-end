@@ -12,6 +12,21 @@ code {
     monospace;
 }
 
+
+.loginPage {
+  margin-top: 68px;
+}
+
+.homeCategory {
+  margin-right: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.homeLink {
+  margin-right: 20px;
+}
+
 .card-img-top {
   width: 100%!important;
   height: 80px!important;

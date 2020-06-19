@@ -3,6 +3,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import HomeComponent from "./HomeComponent";
 import DetailsPageContainer from "../containers/DetailsPageContainer";
 import ApiClientComponent from "./ApiClientComponent";
+import ListingsPageContainer from "../containers/ListingsPageContainer";
+import LoginComponent from "./LoginComponent";
+import RegisterComponent from "./RegisterComponet";
 
 
 export default class HomePage extends React.Component {
@@ -11,6 +14,28 @@ export default class HomePage extends React.Component {
         return (
             <BrowserRouter>
                 <div>
+
+                    <Route
+                        path='/login'
+                        exact={true}
+                        component={LoginComponent}/>
+
+                    <Route
+                        path='/register'
+                        exact={true}
+                        component={RegisterComponent}/>
+
+
+                    <Route
+                        path='/listings'
+                        exact={true}
+                        component={ListingsPageContainer}/>
+
+                    <Route
+                        path='/listings/:category'
+                        exact={true}
+                        component={ListingsPageContainer}/>
+
                     <Route
                         path='/'
                         exact={true}
@@ -29,6 +54,7 @@ export default class HomePage extends React.Component {
                     <Route exact={true}
                            path='/details'
                            component={DetailsPageContainer}/>
+
                     <Route
                         path='/details/:productId'
                         component={DetailsPageContainer}/>
