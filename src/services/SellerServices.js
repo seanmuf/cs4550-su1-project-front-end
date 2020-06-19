@@ -8,7 +8,7 @@ const registerSeller = () =>
             return respose.json()
         })
 
-const fetchProfile = () =>
+export const fetchProfile = () =>
     fetch(`http://localhost:8080/api/profile/seller`, {
         method: 'POST',
         credentials: "include"
