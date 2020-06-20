@@ -13,6 +13,42 @@ code {
 }
 
 
+
+.listings {
+  margin-top: 68px;
+}
+
+.listingSearch {
+  color: white;
+}
+
+
+
+.listingHeader {
+  text-align: center;
+}
+
+.loginError {
+  margin-top: 68px;
+}
+
+.logoutBtn {
+  margin-left: 20px;
+}
+
+.homeTabDivider {
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 8px;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.sellerRadio {
+  margin-right: 20px;
+  margin-left: 20px;
+}
 .loginPage {
   margin-top: 68px;
 }
@@ -80,6 +116,13 @@ code {
 
 .searchPageHomeLink {
   font-size: 12px;
+}
+
+.profileDivider {
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 8px;
 }
 
 .loginDivider {
