@@ -49,7 +49,7 @@ export default class SearchPageContainer extends React.Component {
                                         <div className="input-group-append">
                                                 <button
                                                     onClick={() => this.searchProducts(this.state.keyword)}
-                                                    className="btn btn-success">
+                                                    className="btn btn-primary">
                                                     Search
                                                 </button>
                                         </div>
