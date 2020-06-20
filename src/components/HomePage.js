@@ -6,6 +6,9 @@ import ApiClientComponent from "./ApiClientComponent";
 import ListingsPageContainer from "../containers/ListingsPageContainer";
 import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponet";
+import ProfileComponent from "./ProfileComponent";
+import CartComponent from "./CartComponent";
+import StoreComponent from "./StoreComponent";
 
 
 export default class HomePage extends React.Component {
@@ -14,6 +17,21 @@ export default class HomePage extends React.Component {
         return (
             <BrowserRouter>
                 <div>
+
+                    <Route
+                        path='/store'
+                        exact={true}
+                        component={StoreComponent}/>
+
+                    <Route
+                        path='/cart'
+                        exact={true}
+                        component={CartComponent}/>
+
+                    <Route
+                        path='/profile'
+                        exact={true}
+                        component={ProfileComponent}/>
 
                     <Route
                         path='/login'
@@ -32,7 +50,7 @@ export default class HomePage extends React.Component {
                         component={ListingsPageContainer}/>
 
                     <Route
-                        path='/listings/:category'
+                        path='/:category/listings'
                         exact={true}
                         component={ListingsPageContainer}/>
 

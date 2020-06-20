@@ -1,16 +1,19 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {fetchProfile} from "../services/SellerServices";
+import UserServices from "../services/UserServices";
+import ListingsPageContainer from "../containers/ListingsPageContainer";
 
 export default class HomeComponent extends React.Component {
 
     state = {
         currentUser: {
-            username: ''
+            username: '',
+            userType: ''
         }
     }
+
     componentDidMount() {
-        fetchProfile()
+        UserServices.fetchProfile()
             .catch(e => {})
             .then(currentUser => {
                 if(currentUser) {
@@ -36,11 +39,35 @@ export default class HomeComponent extends React.Component {
                         <div className="navbar-brand mx-auto">
                             <h3>Student MarketPlace</h3>
                         </div>
-                        <ul className="nav navbar-nav" style={{flexDirection: 'row'}}>
-                            <li>
-                                <Link className="nav-link homeSearch" to="/search">Search</Link>
-                            </li>
-                        </ul>
+                        {
+                            this.state.currentUser.username &&
+                            <ul className="nav navbar-nav" style={{flexDirection: 'row'}}>
+                                <li>
+                                    <Link className="nav-link homeSearch" to="/profile">Profile</Link>
+                                </li>
+                                {
+                                    this.state.currentUser.userType === 'seller' &&
+                                    <li className="profileDivider">/</li>
+                                }
+                                {
+                                    this.state.currentUser.userType === 'seller' &&
+                                        <li>
+                                            <Link className="nav-link homeStore" to="/store">Store</Link>
+                                        </li>
+
+                                }
+                                {
+                                    this.state.currentUser.userType === 'buyer' &&
+                                    <li className="profileDivider">/</li>
+                                }
+                                {
+                                    this.state.currentUser.userType === 'buyer' &&
+                                    <li>
+                                        <Link className="nav-link homeRegister" to="/cart">Cart</Link>
+                                    </li>
+                                }
+                            </ul>
+                        }
                     </nav>
                 </div>
                 <div>
@@ -50,19 +77,26 @@ export default class HomeComponent extends React.Component {
                                 <h3 className="homeCategory">Categories</h3>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/listings/product">Products</Link>
+                                <Link className="nav-link homeLink" to="/product/listings">Products</Link>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/listings/book">Books</Link>
+                                <Link className="nav-link homeLink" to="/book/listings">Books</Link>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/listings/service">Services</Link>
+                                <Link className="nav-link homeLink" to="/service/listings">Services</Link>
                             </li>
                             <li>
-                                <Link className="nav-link" to="/listings/housing">Housing</Link>
+                                <Link className="nav-link homeLink" to="/housing/listings">Housing</Link>
+                            </li>
+                            <li className="homeTabDivider">|</li>
+                            <li>
+                                <Link className="nav-link" to="/search">Search</Link>
                             </li>
                         </ul>
                     </nav>
+                    {/*<div>*/}
+                    {/*    <ListingsPageContainer/>*/}
+                    {/*</div>*/}
                 </div>
 
 
