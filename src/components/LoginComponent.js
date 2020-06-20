@@ -1,37 +1,34 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import SellerServices from "../services/SellerServices";
+import UserServices from "../services/UserServices";
 
 
 export default class LoginComponent extends React.Component{
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        error: ''
     }
 
     updateUsername = (newWord) =>
         this.setState(prevState => ({
-            keyword: newWord
+            username: newWord
         }))
 
     updatePassword = (newWord) =>
         this.setState(prevState => ({
-            keyword: newWord
+            password: newWord
         }))
 
+
     login = () => {
-        fetch("http://localhost:8080/api/login", {
-            body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password}),
-            headers: {
-                'content-type': 'application/json'
-            },
-            method: 'POST',
-            credentials: "include"
-        }).then(response => response.json())
+        UserServices.login(this.state.username, this.state.password)
             .catch(e => {
-                this.props.history.push("/login")
+                this.setState({
+                    error: 'Invalid Login Attempt'
+                })
             })
             .then(currentUser => {
                 if(currentUser)
@@ -57,32 +54,32 @@ export default class LoginComponent extends React.Component{
                         </div>
                     </nav>
                 </div>
-                <div className="input-group loginPage">
-                    <label htmlFor="username" className="col-sm-2 col-form-label">
-                        Username </label>
-                    <div className="col-sm-10">
-                        <input className="form-control"
-                               placeholder="Username"
-                               onChange={(event) => this.updateUsername(event.target.value)}
-                               value={this.state.keyword}/>
+                {
+                    this.state.error &&
+                    <div className="alert alert-danger loginError">
+                        {this.state.error}
                     </div>
-                    <label htmlFor="password" className="col-sm-2 col-form-label">
-                        Password </label>
-                    <div className="col-sm-10">
-                        <input className="form-control"
-                               placeholder="Password"
-                               onChange={(event) => this.updatePassword(event.target.value)}
-                               value={this.state.keyword}/>
+                }
+                <div>
+                    <div className="form-group loginPage">
+                        <label htmlFor="username">Username</label>
+                        <input onChange={(e) => this.updateUsername(e.target.value)}
+                            type="email" className="form-control" id="username"
+                               aria-describedby="emailHelp" placeholder="Enter Username"/>
                     </div>
-                    <div className="col-sm-10">
-                        <button
-                            onClick={() => this.login()}
-                            className="btn btn-primary">
-                            Login
-                        </button>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input onChange={(e) => this.updatePassword(e.target.value)}
+                            type="password" className="form-control" id="password"
+                               placeholder="Enter Password"/>
                     </div>
+                    <button className="btn btn-primary"
+                            onClick={() => this.login()}>
+                        Login</button>
                 </div>
             </div>
         )
     }
+
+
 }

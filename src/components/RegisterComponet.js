@@ -1,23 +1,64 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import UserServices from "../services/UserServices";
+import SellerServices from "../services/SellerServices";
+import BuyerServices from "../services/BuyerServices";
+import StoreServices from "../services/StoreServices";
 
 
-export default class RegistrComponent extends React.Component{
+export default class RegisterComponent extends React.Component{
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        userType: '',
+        id: '',
+        error: null
     }
 
     updateUsername = (newWord) =>
         this.setState(prevState => ({
-            keyword: newWord
+            username: newWord
         }))
 
     updatePassword = (newWord) =>
         this.setState(prevState => ({
-            keyword: newWord
+            password: newWord
         }))
+
+    updateType = (newType) => {
+        this.setState({
+            userType: newType
+        })
+    }
+
+    assignUser (userType, uid) {
+        if (userType === 'buyer') {
+            BuyerServices.createBuyer(uid, uid).catch((e) => console.log(e))
+            // SellerServices.createSeller()
+            //     .catch((e) => console.log(e))
+            // StoreServices.createStore()
+            //     .catch((e) => console.log(e))
+        }
+    }
+
+
+    register = () => {
+        UserServices.register(this.state.username, this.state.password, this.state.userType)
+            .catch(e => {
+                this.setState({
+                    error: 'Unable to register'
+                })
+            })
+            .then(currentUser => {
+                if (currentUser) {
+                    this.assignUser(this.state.userType, this.state.id)
+                    this.props.history.push("/profile")
+                }
+
+            })
+    }
+
 
     render() {
         return(
@@ -36,34 +77,40 @@ export default class RegistrComponent extends React.Component{
                         </div>
                     </nav>
                 </div>
+                {
+                    this.state.error &&
+                    <div className="alert alert-danger">
+                        {this.state.error}
+                    </div>
+                }
                 <div className="input-group loginPage">
                     <label htmlFor="username" className="col-sm-2 col-form-label">
                         Username </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder="Username"
+                               placeholder="Enter Username"
                                onChange={(event) => this.updateUsername(event.target.value)}
-                               value={this.state.keyword}/>
+                               value={this.state.username}/>
                     </div>
                     <label htmlFor="password" className="col-sm-2 col-form-label">
                         Password </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder="Password"
+                               placeholder="Enter Password"
                                onChange={(event) => this.updatePassword(event.target.value)}
-                               value={this.state.keyword}/>
+                               value={this.state.password}/>
                     </div>
-                    <label htmlFor="phone" className="col-sm-2 col-form-label">
-                        Phone </label>
+                    <label htmlFor="accountType" className="col-sm-2 col-form-label">
+                        Account Type </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder="Phone"
-                               onChange={(event) => this.updatePassword(event.target.value)}
-                               value={this.state.keyword}/>
+                               placeholder="Enter Buyer or Seller"
+                               onChange={(event) => this.updateType(event.target.value)}
+                               value={this.state.userType}/>
                     </div>
                     <div className="col-sm-10">
                         <button
-                            onClick={() => this.searchProducts(this.state.keyword)}
+                            onClick={() => this.register()}
                             className="btn btn-primary">
                             Register
                         </button>
