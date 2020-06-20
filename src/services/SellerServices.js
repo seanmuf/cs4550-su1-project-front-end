@@ -1,20 +1,26 @@
 
-const registerSeller = () =>
-    fetch(`http://localhost:8080/api/register/seller`, {
+const createSeller = () =>
+    fetch(`http://localhost:8080/api/sellers`, {
         method: 'POST',
         credentials: "include"
     })
-        .then(respose => {
-            return respose.json()
-        })
+        .then(response => response.json())
 
-export const fetchProfile = () =>
+export const fetchSellerProfile = (username, password) =>
     fetch(`http://localhost:8080/api/profile/seller`, {
         method: 'POST',
+        body: JSON.stringify(username, password),
+        headers: {
+            'content-type': 'application/json'
+        },
         credentials: "include"
-    })
-        .then(response => {
-            return response.json()
+    }).then(response => response.json())
+        .catch(e => {
+            this.props.history.push("/login")
+        })
+        .then(currentUser => {
+            if(currentUser)
+                this.props.history.push("/profile")
         })
 
 const createListing = (sid, listing) =>
@@ -48,8 +54,8 @@ const findListingsForSeller = (sid) =>
         .then(response => response.json())
 
 export default {
-    registerSeller,
-    fetchProfile,
+    createSeller,
+    fetchSellerProfile,
     createListing,
     deleteListing,
     updateListing,
