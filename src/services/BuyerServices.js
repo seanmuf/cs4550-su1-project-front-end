@@ -1,5 +1,5 @@
 const createBuyer = (uid) =>
-    fetch(`http://localhost:8080/api/buyers/register`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/buyers/register`, {
         body: JSON.stringify({
             id: uid
         }),

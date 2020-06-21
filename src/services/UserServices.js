@@ -1,11 +1,11 @@
 const findUserById = (uid) =>
-    fetch(`http://localhost:8080/users/${uid}`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/users/${uid}`, {
         method: 'POST',
         credentials: "include"
     }).then(response => response.json())
 
 const register = (username, password, userType) =>
-    fetch("http://localhost:8080/api/register", {
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/register", {
         body: JSON.stringify({
             username: username,
             password: password,
@@ -19,7 +19,7 @@ const register = (username, password, userType) =>
     }).then(response => response.json())
 
 const login = (username, password) =>
-    fetch("http://localhost:8080/api/login", {
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/login", {
         body: JSON.stringify({
             username: username,
             password: password
@@ -32,7 +32,7 @@ const login = (username, password) =>
     }).then(response => response.json())
 
 const fetchProfile = () =>
-    fetch(`http://localhost:8080/api/profile`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/profile`, {
         method: 'POST',
         credentials: "include"
     }).then(response => response.json())
@@ -40,13 +40,13 @@ const fetchProfile = () =>
 
 
 const logout = () =>
-    fetch(`http://localhost:8080/api/logout`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/logout`, {
         method: 'POST',
         credentials: "include"
     }).catch(response => response.json())
 
 const updateUser = (username, password, fname, lname, email, userType, currentUser) => {
-    fetch(`http://localhost:8080/api/profile/${currentUser.id}` , {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/profile/${currentUser.id}` , {
         method: 'PUT',
         body: JSON.stringify({
             username: username,

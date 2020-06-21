@@ -1,21 +1,21 @@
 const createStore = (sid) =>
-    fetch(`http://localhost:8080/api/${sid}/stores`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/${sid}/stores`, {
         method: 'POST',
         credentials: "include"
     })
         .then(response => response.json())
 
 const fetchStore = () =>
-    fetch(`http://localhost:8080/api/store`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/store`, {
         method: 'POST',
         credentials: "include"
     }).then(response => response.json())
 
 const findAllStoreListings = () =>
-    fetch("http://localhost:8080/api/store/listings").then(response => response.json())
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/store/listings").then(response => response.json())
 
 const addToStore = (category, name, price, quantity, sid) =>
-    fetch(`http://localhost:8080/api/${sid}/stores`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/${sid}/stores`, {
         body: JSON.stringify({
             l_category: category,
             l_name: name,

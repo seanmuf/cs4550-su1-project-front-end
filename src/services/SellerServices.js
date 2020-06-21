@@ -1,6 +1,6 @@
 
 const createSeller = (uid) =>
-    fetch(`http://localhost:8080/api/sellers/register`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/sellers/register`, {
         body: JSON.stringify({
             id: uid
         }),
@@ -13,13 +13,13 @@ const createSeller = (uid) =>
         .then(response => response.json())
 
 const fetchSeller = () =>
-    fetch(`http://localhost:8080/api/seller`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/seller`, {
         method: 'POST',
         credentials: "include"
     }).then(response => response.json())
 
 const createListing = (sid, listing) =>
-    fetch(`http://localhost:8080//api/sellers/${sid}/listings`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/sellers/${sid}/listings`, {
         method: 'POST',
         body: JSON.stringify(listing),
         headers: {
@@ -29,13 +29,13 @@ const createListing = (sid, listing) =>
         .then(response => response.json())
 
 const deleteListing = (lid) =>
-    fetch(`http://localhost:8080/api/listings/${lid}`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/listings/${lid}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
 
 const updateListing = (lid, updateListing) =>
-    fetch(`http://localhost:8080/api/listings/${lid}`, {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/listings/${lid}`, {
         method: 'PUT',
         body: JSON.stringify(updateListing),
         headers: {
@@ -45,7 +45,7 @@ const updateListing = (lid, updateListing) =>
         .then(response => response.json())
 
 const findListingsForSeller = (sid) =>
-    fetch(`http://localhost:8080/api/sellers/${sid}/listings`)
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/sellers/${sid}/listings`)
         .then(response => response.json())
 
 export default {

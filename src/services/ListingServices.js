@@ -1,5 +1,5 @@
 const createListing = (category, name, price, quantity) =>
-    fetch("http://localhost:8080/api/listing", {
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/listing", {
         body: JSON.stringify({
             l_category: category,
             l_name: name,
@@ -13,16 +13,16 @@ const createListing = (category, name, price, quantity) =>
     }).then(response => response.json())
 
 const findAllListingsByCategory = (category) =>
-    fetch("http://localhost:8080/api/listings/" + category)
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/listings/" + category)
         .then(response => response.json())
 
 const deleteListing = (listing) =>
-    fetch(`http://localhost:8080/api/listings/${listing.id}` , {
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/listings/${listing.id}` , {
         method: 'DELETE'
     }).then(response => response.json())
 
 const findAllListings = () =>
-    fetch("http://localhost:8080/api/listings").then(response => response.json())
+    fetch("https://student-marketplace-seanmuf.herokuapp.com/api/listings").then(response => response.json())
 
 export default {
     createListing,
