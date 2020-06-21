@@ -21,8 +21,12 @@ const deleteListing = (listing) =>
         method: 'DELETE'
     }).then(response => response.json())
 
+const findAllListings = () =>
+    fetch("http://localhost:8080/api/listings").then(response => response.json())
+
 export default {
     createListing,
     deleteListing,
-    findAllListingsByCategory
+    findAllListingsByCategory,
+    findAllListings
 }

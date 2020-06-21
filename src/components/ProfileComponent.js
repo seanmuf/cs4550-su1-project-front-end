@@ -93,50 +93,50 @@ export default class ProfileComponent extends React.Component {
                 </div>
                 <div className="input-group loginPage">
                     <label htmlFor="username" className="col-sm-2 col-form-label">
-                        Edit Username </label>
+                        {this.state.currentUser.username} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.username}
+                               placeholder="Edit Username"
                                onChange={(event) => this.updateUsername(event.target.value)}
                                value={this.state.username}/>
                     </div>
                     <label htmlFor="password" className="col-sm-2 col-form-label">
-                        Edit Password </label>
+                        {this.state.currentUser.password} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.password}
+                               placeholder="Edit Password"
                                onChange={(event) => this.updatePassword(event.target.value)}
                                value={this.state.password}/>
                     </div>
                     <label htmlFor="firstName" className="col-sm-2 col-form-label">
-                        Edit First Name </label>
+                        {this.state.currentUser.firstName} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.firstName}
+                               placeholder="Edit First Name"
                                onChange={(event) => this.updateFirstName(event.target.value)}
                                value={this.state.firstName}/>
                     </div>
                     <label htmlFor="lastName" className="col-sm-2 col-form-label">
-                        Edit Last Name </label>
+                        {this.state.currentUser.lastName} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.lastName}
+                               placeholder="Edit Last Name"
                                onChange={(event) => this.updateLastName(event.target.value)}
                                value={this.state.lastName}/>
                     </div>
                     <label htmlFor="email" className="col-sm-2 col-form-label">
-                         Edit Email </label>
+                        {this.state.currentUser.email} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.email}
+                               placeholder="Edit Email"
                                onChange={(event) => this.updateEmail(event.target.value)}
                                value={this.state.email}/>
                     </div>
                     <label htmlFor="accountType" className="col-sm-2 col-form-label">
-                        Edit Account Type </label>
+                        {this.state.currentUser.userType} </label>
                     <div className="col-sm-10">
                         <input className="form-control"
-                               placeholder={this.state.currentUser.userType}
+                               placeholder="Edit Account Type"
                                onChange={(event) => this.updateType(event.target.value)}
                         />
                     </div>

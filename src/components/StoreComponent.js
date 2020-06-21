@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import ListingServices from "../services/ListingServices";
 import StoreGridComponent from "./StoreGridComponent";
+import UserServices from "../services/UserServices";
 
 export default class StoreComponent extends React.Component {
     
@@ -10,12 +11,32 @@ export default class StoreComponent extends React.Component {
         l_name: '',
         l_price: '',
         l_quantity: '',
-        listings: []
+        listings: [],
+        currentUser: ''
     }
 
     componentDidMount() {
-
+        UserServices.fetchProfile()
+            .catch(e => {})
+            .then(currentUser => {
+                if(currentUser) {
+                    this.setState({currentUser: currentUser})
+                }
+            })
+        ListingServices.findAllListingsByCategory(this.state.category)
+            .then(listings => this.setState({
+                listings: listings
+            }))
     }
+
+    deleteListing = (listingToDelete) =>
+        ListingServices.deleteListing(listingToDelete)
+            .then(status => this.setState((prevState) => ({
+                    listings: prevState.listings.filter(listing =>
+                        listing !== listingToDelete
+                    )
+                })
+            ))
 
     updatel_category = (newWord) =>
         this.setState(prevState => ({
@@ -111,7 +132,8 @@ export default class StoreComponent extends React.Component {
 
                 <div>
                     <StoreGridComponent
-                    listings={this.state.listings}/>
+                    listings={this.state.listings}
+                    deleteListing={this.deleteListing}/>
                 </div>
 
             </div>

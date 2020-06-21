@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import UserServices from "../services/UserServices";
 import ListingsPageContainer from "../containers/ListingsPageContainer";
+import HomeGridComponent from "./HomeGridComponent";
 
 export default class HomeComponent extends React.Component {
 
@@ -36,7 +37,7 @@ export default class HomeComponent extends React.Component {
                                 <Link className="nav-link homeRegister" to="/register">Register</Link>
                             </li>
                         </ul>
-                        <div className="navbar-brand mx-auto">
+                        <div className="navbar-brand mx-auto mainTitle">
                             <h3>Student MarketPlace</h3>
                         </div>
                         {
@@ -77,28 +78,28 @@ export default class HomeComponent extends React.Component {
                                 <h3 className="homeCategory">Categories</h3>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/product/listings">Products</Link>
+                                <Link className="nav-link homeLink" to="/products/listings">Products</Link>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/book/listings">Books</Link>
+                                <Link className="nav-link homeLink" to="/books/listings">Books</Link>
                             </li>
                             <li>
-                                <Link className="nav-link homeLink" to="/service/listings">Services</Link>
+                                <Link className="nav-link homeLink" to="/services/listings">Services</Link>
                             </li>
                             <li>
                                 <Link className="nav-link homeLink" to="/housing/listings">Housing</Link>
                             </li>
-                            <li className="homeTabDivider">|</li>
+                        </ul>
+                        <ul className="navbar nav ml-auto">
                             <li>
-                                <Link className="nav-link" to="/search">Search</Link>
+                                <Link className="nav-link homeSearchLink" to="/search">Search</Link>
                             </li>
                         </ul>
                     </nav>
-                    {/*<div>*/}
-                    {/*    <ListingsPageContainer/>*/}
-                    {/*</div>*/}
                 </div>
-
+                <div>
+                    <HomeGridComponent/>
+                </div>
 
             </div>
 

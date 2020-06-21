@@ -1,9 +1,5 @@
-const createBuyer = (buyerId, cartId) =>
+const createBuyer = () =>
     fetch(`http://localhost:8080/api/buyers`, {
-        body: JSON.stringify({
-            cart_id: cartId,
-            id: buyerId
-        }),
         method: 'POST',
         credentials: "include"
     })

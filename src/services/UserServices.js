@@ -1,4 +1,8 @@
-
+const findUserById = (uid) =>
+    fetch(`http://localhost:8080/users/${uid}`, {
+        method: 'POST',
+        credentials: "include"
+    }).then(response => response.json())
 
 const register = (username, password, userType) =>
     fetch("http://localhost:8080/api/register", {
@@ -48,8 +52,8 @@ const logout = () =>
         credentials: "include"
     }).catch(response => response.json())
 
-const updateUser = (username, password, fname, lname, email, userType, currentUser) => {
-    fetch(`http://localhost:8080/api/profile/${currentUser.id}` , {
+const updateUser = (username, password, fname, lname, email, userType, userId) => {
+    fetch(`http://localhost:8080/api/profile/${userId}` , {
         method: 'PUT',
         body: JSON.stringify({
             username: username,
@@ -58,7 +62,7 @@ const updateUser = (username, password, fname, lname, email, userType, currentUs
             l_name: lname,
             email: email,
             userType: userType
-        }, currentUser),
+        }),
         headers: {
             'content-type': 'application/json'
         },
@@ -68,7 +72,10 @@ const updateUser = (username, password, fname, lname, email, userType, currentUs
 }
 
 
+
+
 export default {
+    findUserById,
     register,
     fetchProfile,
     login,

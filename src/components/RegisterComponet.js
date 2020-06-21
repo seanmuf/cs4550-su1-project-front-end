@@ -4,6 +4,7 @@ import UserServices from "../services/UserServices";
 import SellerServices from "../services/SellerServices";
 import BuyerServices from "../services/BuyerServices";
 import StoreServices from "../services/StoreServices";
+import CartServices from "../services/CartServices";
 
 
 export default class RegisterComponent extends React.Component{
@@ -12,7 +13,7 @@ export default class RegisterComponent extends React.Component{
         username: '',
         password: '',
         userType: '',
-        id: '',
+        user: '',
         error: null
     }
 
@@ -32,13 +33,13 @@ export default class RegisterComponent extends React.Component{
         })
     }
 
-    assignUser (userType, uid) {
+    assignUser (userType) {
         if (userType === 'buyer') {
-            BuyerServices.createBuyer(uid, uid).catch((e) => console.log(e))
-            // SellerServices.createSeller()
-            //     .catch((e) => console.log(e))
-            // StoreServices.createStore()
-            //     .catch((e) => console.log(e))
+            BuyerServices.createBuyer().catch((e) => console.log(e))
+        } else {
+            if (userType === 'seller') {
+                SellerServices.createSeller().catch((e) => console.log(e))
+            }
         }
     }
 
@@ -52,7 +53,10 @@ export default class RegisterComponent extends React.Component{
             })
             .then(currentUser => {
                 if (currentUser) {
-                    this.assignUser(this.state.userType, this.state.id)
+                    this.setState({
+                        user: currentUser
+                    })
+                    this.assignUser(this.state.userType)
                     this.props.history.push("/profile")
                 }
 

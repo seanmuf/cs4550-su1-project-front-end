@@ -7,9 +7,6 @@ export default class StoreCardComponent extends React.Component {
         listing: this.props.listing
     }
 
-    deleteListing = (listing) =>
-        ListingServices.deleteListing(listing)
-            .then(response => response.json())
 
     render() {
         return(
@@ -20,7 +17,7 @@ export default class StoreCardComponent extends React.Component {
                     <div>Price: {this.state.listing.l_price}</div>
                     <div>Quantity: {this.state.listing.l_quantity}</div>
                     <button
-                        onClick={(e) => console.log(e.target)}
+                        onClick={() => this.props.deleteListing(this.state.listing)}
                         className="btn btn-primary btn-sm">
                         Delete
                     </button>

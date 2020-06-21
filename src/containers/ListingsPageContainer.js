@@ -19,12 +19,20 @@ export default class ListingsPageContainer extends React.Component {
             }))
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.match.params.category !== this.props.match.params.category) {
+            this.setState({
+                layout: this.props.match.params.category
+            })
+        }
+    }
+
 
     render() {
         return (
-            <div>
+            <div className="listingPageHead">
                 <div styles={{display: 'inline-block'}}>
-                    <nav className="navbar  fixed-top navbar-dark bg-dark listingHead">
+                    <nav className="navbar  fixed-top navbar-dark bg-dark">
                         <div>
                             <ul className="nav navbar-nav" style={{flexDirection: 'row'}}>
                                 <li>

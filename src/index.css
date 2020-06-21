@@ -12,6 +12,21 @@ code {
     monospace;
 }
 
+.listingPageHead {
+  margin-bottom: 30px;
+}
+
+.homeSearchLink {
+  color: white;
+}
+
+.homeGrid{
+  margin-top: 40px;
+}
+
+.card-body {
+  background-color: skyblue;
+}
 
 
 .listings {
@@ -21,7 +36,6 @@ code {
 .listingSearch {
   color: white;
 }
-
 
 
 .listingHeader {
@@ -100,6 +114,7 @@ code {
 .searchResultHeader {
   background-color: lightslategray;
   font-weight: bold;
+  text-align: center;
 }
 
 .detailsPageHeader {
