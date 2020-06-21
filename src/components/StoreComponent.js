@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import ListingServices from "../services/ListingServices";
 import StoreGridComponent from "./StoreGridComponent";
 import UserServices from "../services/UserServices";
+import SellerServices from "../services/SellerServices";
+import StoreServices from "../services/StoreServices";
 
 export default class StoreComponent extends React.Component {
     
@@ -12,7 +14,9 @@ export default class StoreComponent extends React.Component {
         l_price: '',
         l_quantity: '',
         listings: [],
-        currentUser: ''
+        currentUser: '',
+        currentSeller: '',
+        currentStore: '',
     }
 
     componentDidMount() {
@@ -23,10 +27,25 @@ export default class StoreComponent extends React.Component {
                     this.setState({currentUser: currentUser})
                 }
             })
-        ListingServices.findAllListingsByCategory(this.state.category)
-            .then(listings => this.setState({
-                listings: listings
-            }))
+        SellerServices.fetchSeller()
+            .catch(e => {})
+            .then(currentSeller => {
+                if(currentSeller) {
+                    this.setState({currentSeller: currentSeller})
+                }
+            })
+        StoreServices.fetchStore()
+            .catch(e => {})
+            .then(currentStore => {
+                if(currentStore) {
+                    this.setState({currentSeller: currentStore})
+                }
+            })
+        StoreServices.findAllStoreListings()
+            .catch(e => {})
+            .then(listings => {
+                    this.setState({listings: listings})
+            })
     }
 
     deleteListing = (listingToDelete) =>
@@ -37,6 +56,8 @@ export default class StoreComponent extends React.Component {
                     )
                 })
             ))
+
+    // addListing = (this.state.l_category, this.state.l_name, this.state.l_price, this.state.l_quantity, )
 
     updatel_category = (newWord) =>
         this.setState(prevState => ({

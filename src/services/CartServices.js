@@ -1,16 +1,10 @@
-const createCart = (cid, bid) =>
-    fetch(`http://localhost:8080/api/carts`, {
-        body: JSON.stringify({
-            id: cid,
-            buyer_id: bid
-        }),
-        headers: {
-            'content-type': 'application/json'
-        },
+const createCart = (bid) =>
+    fetch(`http://localhost:8080/api/${bid}/carts`, {
         method: 'POST',
         credentials: "include"
     })
         .then(response => response.json())
+
 
 export default {
     createCart

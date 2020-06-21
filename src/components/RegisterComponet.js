@@ -14,6 +14,10 @@ export default class RegisterComponent extends React.Component{
         password: '',
         userType: '',
         user: '',
+        seller: '',
+        buyer: '',
+        store: '',
+        cart: '',
         error: null
     }
 
@@ -33,12 +37,46 @@ export default class RegisterComponent extends React.Component{
         })
     }
 
-    assignUser (userType) {
+    assignUserCart = (bid) => {
+        CartServices.createCart(bid)
+            .catch((e) => console.log(e))
+            .then(currentCart => {
+                this.setState({
+                    seller: currentCart
+                })
+            })
+    }
+
+    assignUserStore = (sid) => {
+        StoreServices.createStore(sid)
+            .catch((e) => console.log(e))
+            .then(currentStore => {
+                this.setState({
+                    seller: currentStore
+                })
+        })
+    }
+
+    assignUserType = (userType, uid) => {
         if (userType === 'buyer') {
-            BuyerServices.createBuyer().catch((e) => console.log(e))
+            BuyerServices.createBuyer(uid).catch((e) => console.log(e))
+                .then(currentBuyer => {
+                    this.setState({
+                        buyer: currentBuyer
+                    })
+                    this.assignUserCart(currentBuyer.id)
+                    this.props.history.push("/profile")
+                })
         } else {
             if (userType === 'seller') {
-                SellerServices.createSeller().catch((e) => console.log(e))
+                SellerServices.createSeller(uid).catch((e) => console.log(e))
+                    .then(currentSeller => {
+                        this.setState({
+                            seller: currentSeller
+                        })
+                        this.assignUserStore(currentSeller.id)
+                        this.props.history.push("/profile")
+                    })
             }
         }
     }
@@ -56,8 +94,7 @@ export default class RegisterComponent extends React.Component{
                     this.setState({
                         user: currentUser
                     })
-                    this.assignUser(this.state.userType)
-                    this.props.history.push("/profile")
+                    this.assignUserType(this.state.userType, currentUser.id)
                 }
 
             })

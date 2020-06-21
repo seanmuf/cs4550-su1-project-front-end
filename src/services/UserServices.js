@@ -31,16 +31,9 @@ const login = (username, password) =>
         credentials: "include"
     }).then(response => response.json())
 
-const fetchProfile = (username, password) =>
+const fetchProfile = () =>
     fetch(`http://localhost:8080/api/profile`, {
         method: 'POST',
-        body: JSON.stringify({
-            username: username,
-            password: password
-        }),
-        headers: {
-            'content-type': 'application/json'
-        },
         credentials: "include"
     }).then(response => response.json())
 
@@ -52,8 +45,8 @@ const logout = () =>
         credentials: "include"
     }).catch(response => response.json())
 
-const updateUser = (username, password, fname, lname, email, userType, userId) => {
-    fetch(`http://localhost:8080/api/profile/${userId}` , {
+const updateUser = (username, password, fname, lname, email, userType, currentUser) => {
+    fetch(`http://localhost:8080/api/profile/${currentUser.id}` , {
         method: 'PUT',
         body: JSON.stringify({
             username: username,
@@ -62,7 +55,7 @@ const updateUser = (username, password, fname, lname, email, userType, userId) =
             l_name: lname,
             email: email,
             userType: userType
-        }),
+        }, currentUser),
         headers: {
             'content-type': 'application/json'
         },

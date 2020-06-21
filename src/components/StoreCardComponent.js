@@ -17,9 +17,9 @@ export default class StoreCardComponent extends React.Component {
                     <div>Price: {this.state.listing.l_price}</div>
                     <div>Quantity: {this.state.listing.l_quantity}</div>
                     <button
-                        onClick={() => this.props.deleteListing(this.state.listing)}
+                        onClick={() => this.props.addListing(this.state.listing)}
                         className="btn btn-primary btn-sm">
-                        Delete
+                        Add
                     </button>
                 </div>
             </div>

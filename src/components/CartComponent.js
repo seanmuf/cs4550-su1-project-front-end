@@ -21,7 +21,7 @@ export default class CartComponent extends React.Component {
                                     <Link className="nav-link searchPageHomeLink" to="/">Back To Home</Link>
                                 </li>
                                 <li>
-                                    <h3 className="navbar-brand mr-auto searchPageHeader">Search Page</h3>
+                                    <h3 className="navbar-brand mr-auto searchPageHeader">Cart Page</h3>
                                 </li>
                             </ul>
                         </div>
