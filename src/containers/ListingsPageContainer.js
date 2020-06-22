@@ -10,6 +10,10 @@ export default class ListingsPageContainer extends React.Component {
     state = {
         listings: [],
         category: this.props.match.params.category,
+        l_category: '',
+        l_name: '',
+        l_price: '',
+        l_quantity: '',
     }
 
     componentDidMount() {
@@ -26,6 +30,39 @@ export default class ListingsPageContainer extends React.Component {
             })
         }
     }
+
+    updatel_category = (newWord) =>
+        this.setState(prevState => ({
+            l_category: newWord
+        }))
+
+    updatel_name = (newWord) =>
+        this.setState(prevState => ({
+            l_name: newWord
+        }))
+
+    updatel_price = (newWord) =>
+        this.setState(prevState => ({
+            l_price: newWord
+        }))
+
+    updatel_quantity = (newWord) =>
+        this.setState(prevState => ({
+            l_quantity: newWord
+        }))
+
+    createListing = () =>
+        ListingServices.createListing(this.state.l_category, this.state.l_name, this.state.l_price, this.state.l_quantity)
+            .catch(e => {
+                console.log(e)
+            }).then(listing =>
+            this.setState((prevState) => {
+                return {
+                    listings: [
+                        ...prevState.listings,
+                        listing]
+                }
+            }))
 
 
     render() {
@@ -49,6 +86,48 @@ export default class ListingsPageContainer extends React.Component {
                             </li>
                         </div>
                     </nav>
+                </div>
+
+                <div className="input-group loginPage">
+                    <label htmlFor="l_category" className="col-sm-2 col-form-label">
+                        Enter Category </label>
+                    <div className="col-sm-10">
+                        <input className="form-control"
+                               placeholder=''
+                               onChange={(event) => this.updatel_category(event.target.value)}
+                               value={this.state.l_category}/>
+                    </div>
+                    <label htmlFor="name" className="col-sm-2 col-form-label">
+                        Enter Name </label>
+                    <div className="col-sm-10">
+                        <input className="form-control"
+                               placeholder=''
+                               onChange={(event) => this.updatel_name(event.target.value)}
+                               value={this.state.l_name}/>
+                    </div>
+                    <label htmlFor="l_price" className="col-sm-2 col-form-label">
+                        Enter Price </label>
+                    <div className="col-sm-10">
+                        <input className="form-control"
+                               placeholder=''
+                               onChange={(event) => this.updatel_price(event.target.value)}
+                               value={this.state.l_price}/>
+                    </div>
+                    <label htmlFor="l_quantity" className="col-sm-2 col-form-label">
+                        Enter Quantity </label>
+                    <div className="col-sm-10">
+                        <input className="form-control"
+                               placeholder=''
+                               onChange={(event) => this.updatel_quantity(event.target.value)}
+                               value={this.state.l_quantity}/>
+                    </div>
+                    <div className="col-sm-10">
+                        <button
+                            onClick={() => this.createListing()}
+                            className="btn btn-primary">
+                            Create Listing
+                        </button>
+                    </div>
                 </div>
 
 
