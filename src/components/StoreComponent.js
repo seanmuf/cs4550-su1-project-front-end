@@ -46,6 +46,9 @@ export default class StoreComponent extends React.Component {
             .then(listings => {
                     this.setState({listings: listings})
             })
+        console.log(this.state.currentUser)
+        console.log(this.state.currentSeller)
+        console.log(this.state.currentStore)
     }
 
     deleteListing = (listingToDelete) =>
