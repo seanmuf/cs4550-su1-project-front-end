@@ -38,7 +38,7 @@ export default class StoreComponent extends React.Component {
             .catch(e => {})
             .then(currentStore => {
                 if(currentStore) {
-                    this.setState({currentSeller: currentStore})
+                    this.setState({currentStore: currentStore})
                 }
             })
         StoreServices.findAllStoreListings()

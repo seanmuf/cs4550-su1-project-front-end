@@ -1,14 +1,52 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import CartGridComponent from "./CartGridComponent";
+import UserServices from "../services/UserServices";
+import SellerServices from "../services/SellerServices";
+import StoreServices from "../services/StoreServices";
+import BuyerServices from "../services/BuyerServices";
+import CartServices from "../services/CartServices";
 
 export default class CartComponent extends React.Component {
 
     state = {
-        listing: []
+        listings: [],
+        currentUser: '',
+        currentBuyer: '',
+        currentCart: ''
     }
 
-
+    componentDidMount() {
+        UserServices.fetchProfile()
+            .catch(e => {})
+            .then(currentUser => {
+                if(currentUser) {
+                    this.setState({currentUser: currentUser})
+                }
+            })
+        BuyerServices.fetchBuyer()
+            .catch(e => {})
+            .then(currentSeller => {
+                if(currentSeller) {
+                    this.setState({currentBuyer: currentSeller})
+                }
+            })
+        CartServices.fetchCart()
+            .catch(e => {})
+            .then(currentStore => {
+                if(currentStore) {
+                    this.setState({currentCart: currentStore})
+                }
+            })
+        CartServices.findAllCartListings()
+            .catch(e => {})
+            .then(listings => {
+                this.setState({listings: listings})
+            })
+        console.log(this.state.currentUser)
+        console.log(this.state.currentSeller)
+        console.log(this.state.currentStore)
+    }
 
     render() {
         return(
@@ -29,7 +67,7 @@ export default class CartComponent extends React.Component {
                 </div>
                 <div>
                     <CartGridComponent
-                        listing={this.state.listing}
+                        listings={this.state.listings}
                     />
                 </div>
             </div>

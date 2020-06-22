@@ -11,7 +11,14 @@ const createBuyer = (uid) =>
     })
         .then(response => response.json())
 
+const fetchBuyer = () =>
+    fetch(`https://student-marketplace-seanmuf.herokuapp.com/api/buyer`, {
+        method: 'POST',
+        credentials: "include"
+    }).then(response => response.json())
+
 
 export default {
-    createBuyer
+    createBuyer,
+    fetchBuyer
 }
