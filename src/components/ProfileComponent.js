@@ -68,7 +68,7 @@ export default class ProfileComponent extends React.Component {
 
     update = () =>
         UserServices.updateUser(this.state.username, this.state.password, this.state.firstName, this.state.lastName,
-            this.state.email, this.state.userType, this.state.currentUser)
+            this.state.email, this.state.currentUser.userType, this.state.currentUser)
 
     logout = () =>
         UserServices.logout()
