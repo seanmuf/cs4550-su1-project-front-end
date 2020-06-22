@@ -133,11 +133,13 @@ export default class ProfileComponent extends React.Component {
                                value={this.state.email}/>
                     </div>
                     <label htmlFor="accountType" className="col-sm-2 col-form-label">
-                        Account Type:</label>
+                        {this.state.currentUser.userType}</label>
                     <div className="col-sm-10">
-                        {this.state.currentUser.userType}
+                        <input className="form-control"
+                               placeholder="Edit Account Type"
+                               onChange={(event) => this.updateType(event.target.value)}
+                               value={this.state.userType}/>
                     </div>
-
                     <div className="col-sm-10">
                         <button
                             onClick={() => this.update()}
